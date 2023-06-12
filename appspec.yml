@@ -3,9 +3,15 @@ os: linux
 
 files:
   - source: /
-    destination: /home/ubuntu/drcloud-deploy
+    destination: /home/ubuntu/archive
+    overwrite: yes
 permissions:
-  - object: /home/ubuntu/drcloud-deploy
+  - object: /home/ubuntu/archive
     owner: ubuntu
     group: ubuntu
     mode: 755
+hooks:
+  AfterInstall:
+    - location: deploy.sh
+      timeout: 60
+      runas: root
